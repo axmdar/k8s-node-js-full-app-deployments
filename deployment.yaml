@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-hello-app
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: web-hello-app
+  template:
+    metadata:
+      labels:
+        app: web-hello-app
+    spec:
+      containers:
+      - name: web-hello
+        image: dwex/web-hello
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 3000
